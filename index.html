@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Word counter</header>
+    <main>
+        <textarea name="inputText" id="inputText" rows="10" cols="40" placeholder="Enter text here"></textarea>
+        <br>
+        <button id="wordcount" type="button">Word Count</button>
+        <button id="charcount" type="button">Character Count</button>
+        <p>Word Count is: <span id="result"></span></p>
+        <p>Character Count is: <span id="charresult"></span></p>
+    </main>
+    <script>
+        const wordcountbutton = document.getElementById('wordcount');
+        const textArea = document.getElementById('inputText');
+        wordcountbutton.addEventListener('click', function () {
+            const words = textArea.value.trim().split(/\s+/);
+            const wordcount = words.filter(word => word.length > 0).length;
+            const resultSpan = document.getElementById('result');
+            resultSpan.innerHTML = wordcount;
+        }
+        )
+        const charactorcountbutton = document.getElementById('charcount');
+        charactorcountbutton.addEventListener('click', function () {
+            const text = textArea.value;
+            const cleanText = text
+                .replace(/<[^>]*>/g, '')            // remove HTML
+                .replace(/[\u200B-\u200D\u00A0]/g, '') // remove invisible chars
+                .replace(/[\n\t]/g, '')             // remove newlines & tabs
+                .trim();
+    
+            const charCount = cleanText.replace(/\s+/g, '').length;
+            console.log(charCount);
+            const resultSpan = document.getElementById('charresult');
+            resultSpan.innerHTML = charCount;
+        });
+
+
+    </script>
+</body>
+
+</html>
