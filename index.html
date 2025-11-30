@@ -55,22 +55,23 @@
             const words = textArea.value.trim().split(/\s+/);
             const wordcount = words.filter(word => word.length > 0).length;
             const resultSpan = document.getElementById('result');
-            resultSpan.innerHTML = wordcount;
+            resultSpan.textContent = wordcount;
         }
         )
-        const charactorcountbutton = document.getElementById('charcount');
-        charactorcountbutton.addEventListener('click', function () {
+        const charCountButton = document.getElementById('charcount');
+        charCountButton.addEventListener('click', function () {
             const text = textArea.value;
             const cleanText = text
                 .replace(/<[^>]*>/g, '')            // remove HTML
                 .replace(/[\u200B-\u200D\u00A0]/g, '') // remove invisible chars
                 .replace(/[\n\t]/g, '')             // remove newlines & tabs
                 .trim();
-    
+
             const charCount = cleanText.replace(/\s+/g, '').length;
             console.log(charCount);
             const resultSpan = document.getElementById('charresult');
-            resultSpan.innerHTML = charCount;
+            charResultSpan.textContent = charCount;
+
         });
 
 
